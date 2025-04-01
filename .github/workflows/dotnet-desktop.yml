@@ -1,0 +1,30 @@
+name: C# CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+
+    - name: Restore NuGet packages
+      run: nuget restore "Cyber Security Chatbot/Cyber Security Chatbot.sln" # Use quotes!
+
+    - name: Build project
+      run: msbuild "Cyber Security Chatbot/Cyber Security Chatbot.sln" /p:Configuration=Release # Use quotes!
+
+    - name: Run tests (if you have them)
+      run: dotnet test "YourTestProject/YourTestProject.csproj" # Replace with your test project path
+
+    - name: Code Formatting Check (using dotnet format)
+      run: dotnet format --verify-no-changes "Cyber Security Chatbot/Cyber Security Chatbot.sln" # Use quotes!
