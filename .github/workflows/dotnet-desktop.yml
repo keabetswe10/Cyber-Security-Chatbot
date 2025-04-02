@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: windows-latest
 
-    steps:
+  steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
@@ -18,10 +18,10 @@ jobs:
       uses: NuGet/setup-nuget@v1
 
     - name: Restore NuGet packages
-      run: nuget restore "Cyber Security Chatbot/Cyber Security Chatbot.sln" # Corrected path
+      run: nuget restore "Cyber Security Chatbot.sln" # Corrected path
 
     - name: Build project
-      run: msbuild "Cyber Security Chatbot/Cyber Security Chatbot.sln" /p:Configuration=Release # Corrected path
+      run: msbuild "Cyber Security Chatbot.sln" /p:Configuration=Release # Corrected path
 
     - name: Code Formatting Check (using dotnet format)
-      run: dotnet format --verify-no-changes "Cyber Security Chatbot/Cyber Security Chatbot.sln" # Corrected path
+      run: dotnet format --verify-no-changes "Cyber Security Chatbot.sln" # Corrected path
